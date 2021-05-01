@@ -13,6 +13,7 @@ class Vertice {
 
   public:
     string nome;
+    unsigned int cor;
 
     Vertice(string n) {
       nome = n;
