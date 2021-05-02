@@ -1,7 +1,6 @@
 #include <iostream>
 #include <map>
 #include <string>
-#include <utility>
 #include <vector>
 using std::cout;
 using std::endl;
@@ -33,24 +32,43 @@ class Vertice {
 
 class Grafo {
 
+  int find_vertice(string v) {
+    int index = 0;
+    while (index < vertices.size()) {
+      if (vertices[index].nome == v) {
+        return index;
+      } else {
+        index++;
+      }
+    }
+
+    return -1;
+  }
+
   public:
     vector<Vertice> vertices;
     void add(string v1, string v2) {
-      bool break_called = false;
+      int search_v1 = find_vertice(v1);
+      int search_v2 = find_vertice(v2);
 
-      vector<Vertice>::iterator x;
-      for (x = vertices.begin(); x != vertices.end(); x++) {
-        if (x->nome == v1) {
-          x->add_vertice(v2);
-          break_called = true;
-          break;
+      if (search_v1 >= 0) {
+        if (search_v2 >= 0) {
+          // quando tanto v1 quanto v2 já estão dentro do vector
+          vertices[search_v1].add_vertice(vertices[search_v2]);
+        } else {
+          // quando apenas v1 está dentro do vector
+          Vertice new_v2(v2);
+          vertices[search_v1].add_vertice(v2);
+          new_v2.add_vertice(vertices[search_v1]);
+          vertices.push_back(new_v2);
         }
-      }
-
-      if (!break_called) {
-        Vertice novo_vertice(v1);
-        novo_vertice.add_vertice(v2);
-        vertices.push_back(novo_vertice);
+      } else {
+        // quando v1 e v2 não estão dentro do vector
+        Vertice new_v1(v1), new_v2(v2);
+        new_v1.add_vertice(new_v2);
+        new_v2.add_vertice(new_v1);
+        vertices.push_back(new_v1);
+        vertices.push_back(new_v2);
       }
     }
 };
