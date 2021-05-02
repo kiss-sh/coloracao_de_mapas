@@ -1,6 +1,7 @@
 #include <iostream>
 #include <map>
 #include <string>
+#include <utility>
 #include <vector>
 using std::cout;
 using std::endl;
@@ -9,22 +10,21 @@ using std::string;
 using std::vector;
 
 class Vertice {
-  map<string, int> adjacentes;
-
   public:
+    map<string, Vertice> adjacentes;
     string nome;
-    unsigned int cor;
+    int cor = 0; // 0 significa nenhuma cor definida ou simplesmente cor branca
 
     Vertice(string n) {
       nome = n;
     }
 
-    void add_vertice(string nome, int aresta) {
-      adjacentes[nome] = aresta;
+    void add_vertice(Vertice other_vertice) {
+      adjacentes.emplace(other_vertice.nome, other_vertice);
     }
 
     void mostrar_adjacentes() {
-      map<string, int>::iterator x;
+      map<string, Vertice>::iterator x;
       for (x = adjacentes.begin(); x != adjacentes.end(); x++) {
         cout << nome << "->" << x->first << endl;
       }
@@ -32,16 +32,16 @@ class Vertice {
 };
 
 class Grafo {
-  vector<Vertice> vertices;
 
   public:
-    void add(string v1, string v2, int aresta) {
+    vector<Vertice> vertices;
+    void add(string v1, string v2) {
       bool break_called = false;
 
       vector<Vertice>::iterator x;
       for (x = vertices.begin(); x != vertices.end(); x++) {
         if (x->nome == v1) {
-          x->add_vertice(v2,  aresta);
+          x->add_vertice(v2);
           break_called = true;
           break;
         }
@@ -49,7 +49,7 @@ class Grafo {
 
       if (!break_called) {
         Vertice novo_vertice(v1);
-        novo_vertice.add_vertice(v2, aresta);
+        novo_vertice.add_vertice(v2);
         vertices.push_back(novo_vertice);
       }
     }
