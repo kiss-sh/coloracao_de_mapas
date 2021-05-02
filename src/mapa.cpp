@@ -54,3 +54,27 @@ class Grafo {
       }
     }
 };
+
+void colorir_mapa(Vertice &v, vector<int> cores = {}) {
+  if (v.cor == 0) {
+    if (cores.size() > 0) {
+      /* implementacao incompleta
+      vector<int> cores_adj = cores;
+
+      map<string, Vertice>::iterator x;
+      for (x = v.adjacentes.begin(); x != v.adjacentes.end(); x++) {
+        index = cores
+      }
+      */
+
+    } else {
+      v.cor = 1;
+      cores.push_back(1);
+    }
+
+    map<string, Vertice>::iterator x;
+    for (x = v.adjacentes.begin(); x != v.adjacentes.end(); x++) {
+      colorir_mapa(x->second, cores);
+    }
+  }
+}
