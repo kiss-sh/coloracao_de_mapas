@@ -3,7 +3,7 @@
 
 namespace wrapper {
   void display();
-  void open_window(int, int);
+  void open_window(int, int, char[]);
 }
 
 #endif
