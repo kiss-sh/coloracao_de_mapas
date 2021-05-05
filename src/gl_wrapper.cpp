@@ -1,4 +1,3 @@
-#include <GL/freeglut_std.h>
 #include <string>
 #include <GL/glut.h>
 #include "gl_wrapper.hpp"
