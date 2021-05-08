@@ -9,9 +9,10 @@ char texto[30];
 GLfloat win, r, g, b, raio;
 GLint view_w, view_h, primitiva;
 
-void DesenhaCirculo(GLfloat raio, int num_linhas, int posx, int posy) {
+void DesenhaCirculo(GLfloat raio, int posx, int posy) {
   int i;
   GLfloat angulo;
+  int num_linhas = 100;
   angulo = (GLfloat)(2 * PI) / num_linhas;
 
   glBegin(GL_POLYGON);
@@ -29,33 +30,17 @@ void Desenha(void) {
 
   // Define a cor corrente
   glColor3f(r, g, b);
-  DesenhaCirculo(10, 100, 100, 100);
-
-  // Exibe a posição do mouse na janela
-  glColor3f(1.0f, 1.0f, 1.0f);
-  //DesenhaTexto(texto);
+  DesenhaCirculo(100, 100, 100);
   glutSwapBuffers();
-}
-
-void wrapper::display() {
-  glMatrixMode(GL_MODELVIEW);
-  glLoadIdentity();
-  glClear(GL_COLOR_BUFFER_BIT);
-
-  // apaga as informacoes de cor da renderizacao anterior
-  glClearColor(0.0f, 1.0f, 1.0f, 1.0f);
-  glClear(GL_COLOR_BUFFER_BIT);
-  DesenhaCirculo(10, 100, 100, 100);
-  glFlush();
 }
 
 void Inicializa(void) {
   // Define a cor de fundo da janela de visualização como preta
-  glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+  glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
   win = 150.0f;
   //primitiva = QUADRADO;
   r = 0.0f;
-  g = 1.0f;
+  g = 0.0f;
   b = 1.0f;
 }
 
