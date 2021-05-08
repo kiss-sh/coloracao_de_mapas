@@ -60,15 +60,18 @@ void Inicializa(void) {
 }
 
 void AlteraTamanhoJanela(GLsizei w, GLsizei h) {
-  // Especifica as dimensões da Viewport
-  glViewport(0, 0, w, h);
-  view_w = w;
-  view_h = h;
+  if(h == 0) h = 1; // Evita a divisao por zero
+  glViewport(0, 0, w, h); // Especifica as dimensões da Viewport
 
   // Inicializa o sistema de coordenadas
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-  gluOrtho2D(-win, win, -win, win);
+
+  // Estabelece a janela de seleção (left, right, bottom, top)
+  if (w <= h)
+    gluOrtho2D (0.0f, 250.0f, 0.0f, 250.0f*h/w);
+  else
+    gluOrtho2D (0.0f, 250.0f*w/h, 0.0f, 250.0f);
 }
 
 void wrapper::open_window(int width, int height) {
