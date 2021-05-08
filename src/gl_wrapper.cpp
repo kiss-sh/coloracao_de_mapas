@@ -5,43 +5,38 @@
 using std::string;
 
 #define PI 3.14
-char texto[30];
-GLfloat win, r, g, b, raio;
-GLint view_w, view_h, primitiva;
 
 void DesenhaCirculo(GLfloat raio, int posx, int posy) {
-  int i;
   GLfloat angulo;
   int num_linhas = 100;
   angulo = (GLfloat)(2 * PI) / num_linhas;
 
   glBegin(GL_POLYGON);
-  for (i = 1; i <= num_linhas; i++) {
+  for (int i = 1; i <= num_linhas; i++) {
     glVertex2f(posx + cos(i * angulo) * raio, posy + sin(i * angulo) * raio);
   }
   glEnd();
 }
 
+void desenhaVertice(int x, int y) {
+// circulo externo
+  glColor3f(0.0f, 0.0f, 0.0f);
+  DesenhaCirculo(20, x, y);
+
+  // circulo interno
+  glColor3f(1.0f, 1.0f, 1.0f);
+  DesenhaCirculo(16, x, y);
+}
+
 void Desenha(void) {
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
-
   glClear(GL_COLOR_BUFFER_BIT);
 
-  // Define a cor corrente
-  glColor3f(r, g, b);
-  DesenhaCirculo(100, 100, 100);
-  glutSwapBuffers();
-}
+  desenhaVertice(100, 100);
 
-void Inicializa(void) {
-  // Define a cor de fundo da janela de visualização como preta
-  glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
-  win = 150.0f;
-  //primitiva = QUADRADO;
-  r = 0.0f;
-  g = 0.0f;
-  b = 1.0f;
+  glutSwapBuffers();
+  glClearColor(1.0f, 1.0f, 1.0f, 0.0f); // cor de fundo da janela
 }
 
 void AlteraTamanhoJanela(GLsizei w, GLsizei h) {
@@ -67,10 +62,8 @@ void wrapper::open_window(int width, int height) {
   glutInitWindowSize(width, height);
   glutInitWindowPosition((glutGet(GLUT_SCREEN_WIDTH)-640)/2, // posiciona a janela
                        (glutGet(GLUT_SCREEN_HEIGHT)-480)/2); // no centro da tela
-  glutInitWindowPosition(10,10);
   glutCreateWindow("teste");
   glutDisplayFunc(Desenha);
   glutReshapeFunc(AlteraTamanhoJanela);
-  Inicializa();
   glutMainLoop();
 }
