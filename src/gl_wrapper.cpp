@@ -71,7 +71,7 @@ void AlteraTamanhoJanela(GLsizei w, GLsizei h) {
   gluOrtho2D(-win, win, -win, win);
 }
 
-void wrapper::open_window(int width, int height, char window_name[]) {
+void wrapper::open_window(int width, int height) {
 
   int argc = 1; char *argv[1] = {(char*)"opengl"}; // glut requer esses parametros
   glutInit(&argc, argv);
@@ -80,7 +80,7 @@ void wrapper::open_window(int width, int height, char window_name[]) {
   glutInitWindowPosition((glutGet(GLUT_SCREEN_WIDTH)-640)/2, // posiciona a janela
                        (glutGet(GLUT_SCREEN_HEIGHT)-480)/2); // no centro da tela
   glutInitWindowPosition(10,10);
-  glutCreateWindow(window_name);
+  glutCreateWindow("teste");
   glutDisplayFunc(Desenha);
   glutReshapeFunc(AlteraTamanhoJanela);
   Inicializa();
