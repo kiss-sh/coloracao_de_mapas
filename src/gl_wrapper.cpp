@@ -1,10 +1,14 @@
 #include <cmath>
 #include <string>
 #include <GL/glut.h>
+#include <vector>
 #include "gl_wrapper.hpp"
 using std::string;
+using std::vector;
 
 #define PI 3.14
+
+vector<VerticePosition*> global_var_vertices;
 
 void DesenhaCirculo(GLfloat raio, int posx, int posy) {
   GLfloat angulo;
@@ -54,7 +58,7 @@ void AlteraTamanhoJanela(GLsizei w, GLsizei h) {
     gluOrtho2D (0.0f, 250.0f*w/h, 0.0f, 250.0f);
 }
 
-void wrapper::open_window(int width, int height) {
+void open_window(int width, int height) {
 
   int argc = 1; char *argv[1] = {(char*)"opengl"}; // glut requer esses parametros
   glutInit(&argc, argv);
