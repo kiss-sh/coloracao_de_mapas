@@ -37,7 +37,9 @@ void Desenha(void) {
   glLoadIdentity();
   glClear(GL_COLOR_BUFFER_BIT);
 
-  desenhaVertice(100, 100);
+  for (int i = 0; i != global_var_vertices.size(); i++) {
+    desenhaVertice(global_var_vertices[i]->x, global_var_vertices[i]->y);
+  }
 
   glutSwapBuffers();
   glClearColor(1.0f, 1.0f, 1.0f, 0.0f); // cor de fundo da janela
