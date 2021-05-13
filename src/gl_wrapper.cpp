@@ -1,3 +1,4 @@
+#include <GL/gl.h>
 #include <cmath>
 #include <string>
 #include <GL/glut.h>
@@ -30,6 +31,15 @@ void desenhaVertice(int x, int y) {
   // circulo interno
   glColor3f(1.0f, 1.0f, 1.0f);
   DesenhaCirculo(16, x, y);
+}
+
+void desenhaAresta(int x_begin, int y_begin, int x_end, int y_end) {
+  glLineWidth(30.0f);
+  glBegin(GL_LINES);
+    glColor3f(0.0f, 0.0f, 0.0f);
+    glVertex2f(x_begin, y_begin);
+    glVertex2f(x_end, y_end);
+  glEnd();
 }
 
 void Desenha(void) {
