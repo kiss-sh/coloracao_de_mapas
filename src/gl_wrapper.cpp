@@ -34,7 +34,9 @@ void desenhaVertice(int x, int y) {
 }
 
 void desenhaAresta(int x_begin, int y_begin, int x_end, int y_end) {
-  glLineWidth(30.0f);
+  int raio = 20;
+
+  glLineWidth(25.0f);
   glBegin(GL_LINES);
     glColor3f(0.0f, 0.0f, 0.0f);
     glVertex2f(x_begin, y_begin);
@@ -47,9 +49,11 @@ void Desenha(void) {
   glLoadIdentity();
   glClear(GL_COLOR_BUFFER_BIT);
 
-  for (int i = 0; i != global_var_vertices.size(); i++) {
+
+  for (int i = 0; i < global_var_vertices.size(); i++) {
     desenhaVertice(global_var_vertices[i]->x, global_var_vertices[i]->y);
   }
+
 
   glutSwapBuffers();
   glClearColor(1.0f, 1.0f, 1.0f, 0.0f); // cor de fundo da janela
