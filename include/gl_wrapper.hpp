@@ -6,6 +6,13 @@ struct VerticePosition {
   int y;
 };
 
+struct ArestaPosition {
+  int x_begin;
+  int y_begin;
+  int x_end;
+  int y_end;
+};
+
 void open_window(int, int);
 
 #endif

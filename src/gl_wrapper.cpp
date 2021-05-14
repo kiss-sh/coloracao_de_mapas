@@ -10,6 +10,7 @@ using std::vector;
 #define PI 3.14
 
 vector<VerticePosition*> global_var_vertices;
+vector<ArestaPosition*> global_var_arestas;
 
 void DesenhaCirculo(GLfloat raio, int posx, int posy) {
   GLfloat angulo;
@@ -49,9 +50,16 @@ void Desenha(void) {
   glLoadIdentity();
   glClear(GL_COLOR_BUFFER_BIT);
 
+  for (int i = 0; i < global_var_arestas.size(); i++) {
+    desenhaAresta(global_var_arestas[i]->x_begin,
+                  global_var_arestas[i]->y_begin,
+                  global_var_arestas[i]->x_end,
+                  global_var_arestas[i]->y_end);
+  }
 
   for (int i = 0; i < global_var_vertices.size(); i++) {
-    desenhaVertice(global_var_vertices[i]->x, global_var_vertices[i]->y);
+    desenhaVertice(global_var_vertices[i]->x,
+                   global_var_vertices[i]->y);
   }
 
 
