@@ -1,9 +1,13 @@
 #ifndef GL_WRAPPER
 #define GL_WRAPPER
 
+#include <string>
+using std::string;
+
 struct VerticePosition {
   int x;
   int y;
+  string nome;
 };
 
 struct ArestaPosition {

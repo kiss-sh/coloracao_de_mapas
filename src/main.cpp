@@ -29,6 +29,7 @@ int main(int argc, char const *argv[]) {
           VerticePosition *v = new VerticePosition;
           v->x = x_axis;
           v->y = y_axis;
+          v->nome = vertices[index]->nome;
           global_var_vertices.push_back(v);
 
           x_axis += 50;

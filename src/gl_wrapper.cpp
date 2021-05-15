@@ -24,7 +24,25 @@ void DesenhaCirculo(GLfloat raio, int posx, int posy) {
   glEnd();
 }
 
-void desenhaVertice(int x, int y) {
+void desenhaTexto(const char* text, int length, int x, int y) {
+  double* matrix = new double[16];
+  glGetDoublev(GL_PROJECTION_MATRIX, matrix);
+  glOrtho(0, 800, 0, 600, -5, 5);
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+  glPushMatrix();
+  glLoadIdentity();
+  glRasterPos2i(x, y);
+  for (int i=0; i < length; i++) {
+    glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, (int)text[i]);
+  }
+  glPopMatrix();
+  glMatrixMode(GL_PROJECTION);
+  glLoadMatrixd(matrix);
+  glMatrixMode(GL_MODELVIEW);
+}
+
+void desenhaVertice(int x, int y, string text) {
 // circulo externo
   glColor3f(0.0f, 0.0f, 0.0f);
   DesenhaCirculo(20, x, y);
@@ -32,6 +50,12 @@ void desenhaVertice(int x, int y) {
   // circulo interno
   glColor3f(1.0f, 1.0f, 1.0f);
   DesenhaCirculo(16, x, y);
+
+  glColor3f(0.0f, 0.0f, 0.0f);
+
+  // texto dentro do vertive
+  const char *str = text.c_str();
+  desenhaTexto(str, text.size(), x-4, y-2);
 }
 
 void desenhaAresta(int x_begin, int y_begin, int x_end, int y_end) {
@@ -59,7 +83,8 @@ void Desenha(void) {
 
   for (int i = 0; i < global_var_vertices.size(); i++) {
     desenhaVertice(global_var_vertices[i]->x,
-                   global_var_vertices[i]->y);
+                   global_var_vertices[i]->y,
+                   global_var_vertices[i]->nome);
   }
 
 
