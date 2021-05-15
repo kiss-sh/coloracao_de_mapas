@@ -18,26 +18,34 @@ int main(int argc, char const *argv[]) {
     vector<Vertice*> vertices = ler_arquivo(filename);
     cout << "leitura finalizada" << endl; // log
 
-    if (vertices.size() == 2) {
-      // vertices
-      VerticePosition *v1 = new VerticePosition;
-      v1->x = 100;
-      v1->y = 100;
-      VerticePosition *v2 = new VerticePosition;
-      v2->x = 200;
-      v2->y = 100;
+    bool breaked = false;
+    int x_axis = 100;
+    int y_axis = 100;
+    int index = 0;
 
-      global_var_vertices.push_back(v1);
-      global_var_vertices.push_back(v2);
+    while (true) {
+      for (int x=0; x < 3; x++) {
+        if (index < vertices.size()) {
+          VerticePosition *v = new VerticePosition;
+          v->x = x_axis;
+          v->y = y_axis;
+          global_var_vertices.push_back(v);
 
-      // arestas
-      ArestaPosition *a1 = new ArestaPosition;
-      a1->x_begin = v1->x;
-      a1->y_begin = v1->y;
-      a1->x_end = v2->x;
-      a1->y_end = v2->y;
+          x_axis += 50;
+          index++;
 
-      global_var_arestas.push_back(a1);
+        } else {
+          breaked = true;
+          break;
+        }
+      }
+
+      if (breaked) {
+        break;
+      } else {
+        x_axis = 100;
+        y_axis += 50;
+      }
     }
   }
 
