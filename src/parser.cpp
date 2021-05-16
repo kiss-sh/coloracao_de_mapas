@@ -8,6 +8,9 @@ using std::string;
 using std::vector;
 
 string ler_nome_vertice(ifstream &arquivo) {
+  // armazena todos os caracteres em uma variavel
+  // e retorna quando achar aspas duplas
+
   vector<char> variavel_char;
   char c;
   while (arquivo.get(c)) {
@@ -22,6 +25,8 @@ string ler_nome_vertice(ifstream &arquivo) {
 }
 
 vector<Vertice*> ler_arquivo(string filename) {
+  // lê um arquivo de texto estruturado e retorna um vetor de ponteiros
+
   Grafo grafo;
   string nome_vertice, nome_adjacente;
   bool in_braket = false;

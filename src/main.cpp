@@ -24,6 +24,8 @@ VerticePosition *obterPointer(string nome) {
 }
 
 void montarArestas(vector<Vertice*> vertices) {
+  // obter as cordenadas dos vertice para criar as arestas
+
   for (int x = 0; x != vertices.size(); x++) {
     VerticePosition *v = obterPointer(vertices[x]->nome);
 
@@ -89,9 +91,10 @@ int main(int argc, char const *argv[]) {
     }
 
     montarArestas(vertices);
+    open_window(800, 400, "coloração de mapas");
+  } else {
+    cout << "parametros incorretos" << endl;
   }
-
-  open_window(800, 400);
 
   return 0;
 }
