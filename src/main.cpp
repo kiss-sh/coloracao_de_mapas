@@ -14,11 +14,13 @@ extern vector<VerticePosition*> global_var_vertices;
 extern vector<ArestaPosition*>  global_var_arestas;
 
 VerticePosition *obterPointer(string nome) {
+  VerticePosition *p = NULL;
   for (int it = 0; it < global_var_vertices.size(); it++) {
     if(global_var_vertices[it]->nome == nome) {
-      return global_var_vertices[it];
+      p = global_var_vertices[it];
     }
   }
+  return p;
 }
 
 void montarArestas(vector<Vertice*> vertices) {
