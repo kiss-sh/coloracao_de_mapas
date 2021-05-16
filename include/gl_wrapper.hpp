@@ -18,6 +18,6 @@ struct ArestaPosition {
   int y_end;
 };
 
-void open_window(int, int);
+void open_window(int, int, string);
 
 #endif

@@ -1,4 +1,3 @@
-#include <GL/gl.h>
 #include <cmath>
 #include <string>
 #include <GL/glut.h>
@@ -7,15 +6,12 @@
 using std::string;
 using std::vector;
 
-#define PI 3.14
-
 vector<VerticePosition*> global_var_vertices;
 vector<ArestaPosition*> global_var_arestas;
 
 void DesenhaCirculo(GLfloat raio, int posx, int posy) {
-  GLfloat angulo;
   int num_linhas = 100;
-  angulo = (GLfloat)(2 * PI) / num_linhas;
+  GLfloat angulo = (GLfloat)(2 * 3.14) / num_linhas;
 
   glBegin(GL_POLYGON);
   for (int i = 1; i <= num_linhas; i++) {
@@ -78,8 +74,6 @@ void desenhaVertice(int x, int y, string text, int cor) {
 }
 
 void desenhaAresta(int x_begin, int y_begin, int x_end, int y_end) {
-  int raio = 20;
-
   glLineWidth(25.0f);
   glBegin(GL_LINES);
     glColor3f(0.0f, 0.0f, 0.0f);
@@ -107,7 +101,6 @@ void Desenha(void) {
                    global_var_vertices[i]->cor);
   }
 
-
   glutSwapBuffers();
   glClearColor(1.0f, 1.0f, 1.0f, 0.0f); // cor de fundo da janela
 }
@@ -120,14 +113,14 @@ void AlteraTamanhoJanela(GLsizei w, GLsizei h) {
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
 
-  // Estabelece a janela de seleção (left, right, bottom, top)
   if (w <= h)
     gluOrtho2D (0.0f, 250.0f, 0.0f, 250.0f*h/w);
   else
     gluOrtho2D (0.0f, 250.0f*w/h, 0.0f, 250.0f);
 }
 
-void open_window(int width, int height) {
+void open_window(int width, int height, string nome_janela) {
+  // ponto de entrada das funções do opengl
 
   int argc = 1; char *argv[1] = {(char*)"opengl"}; // glut requer esses parametros
   glutInit(&argc, argv);
@@ -135,7 +128,7 @@ void open_window(int width, int height) {
   glutInitWindowSize(width, height);
   glutInitWindowPosition((glutGet(GLUT_SCREEN_WIDTH)-640)/2, // posiciona a janela
                        (glutGet(GLUT_SCREEN_HEIGHT)-480)/2); // no centro da tela
-  glutCreateWindow("teste");
+  glutCreateWindow(nome_janela.c_str());
   glutDisplayFunc(Desenha);
   glutReshapeFunc(AlteraTamanhoJanela);
   glutMainLoop();

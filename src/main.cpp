@@ -14,14 +14,18 @@ extern vector<VerticePosition*> global_var_vertices;
 extern vector<ArestaPosition*>  global_var_arestas;
 
 VerticePosition *obterPointer(string nome) {
+  VerticePosition *p = NULL;
   for (int it = 0; it < global_var_vertices.size(); it++) {
     if(global_var_vertices[it]->nome == nome) {
-      return global_var_vertices[it];
+      p = global_var_vertices[it];
     }
   }
+  return p;
 }
 
 void montarArestas(vector<Vertice*> vertices) {
+  // obter as cordenadas dos vertice para criar as arestas
+
   for (int x = 0; x != vertices.size(); x++) {
     VerticePosition *v = obterPointer(vertices[x]->nome);
 
@@ -87,9 +91,10 @@ int main(int argc, char const *argv[]) {
     }
 
     montarArestas(vertices);
+    open_window(800, 400, "coloração de mapas");
+  } else {
+    cout << "parametros incorretos" << endl;
   }
-
-  open_window(800, 400);
 
   return 0;
 }
