@@ -6,15 +6,12 @@
 using std::string;
 using std::vector;
 
-#define PI 3.14
-
 vector<VerticePosition*> global_var_vertices;
 vector<ArestaPosition*> global_var_arestas;
 
 void DesenhaCirculo(GLfloat raio, int posx, int posy) {
-  GLfloat angulo;
   int num_linhas = 100;
-  angulo = (GLfloat)(2 * PI) / num_linhas;
+  GLfloat angulo = (GLfloat)(2 * 3.14) / num_linhas;
 
   glBegin(GL_POLYGON);
   for (int i = 1; i <= num_linhas; i++) {
@@ -77,8 +74,6 @@ void desenhaVertice(int x, int y, string text, int cor) {
 }
 
 void desenhaAresta(int x_begin, int y_begin, int x_end, int y_end) {
-  int raio = 20;
-
   glLineWidth(25.0f);
   glBegin(GL_LINES);
     glColor3f(0.0f, 0.0f, 0.0f);
