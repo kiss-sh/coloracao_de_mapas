@@ -1,4 +1,3 @@
-#include <GL/gl.h>
 #include <cmath>
 #include <string>
 #include <GL/glut.h>
@@ -107,7 +106,6 @@ void Desenha(void) {
                    global_var_vertices[i]->cor);
   }
 
-
   glutSwapBuffers();
   glClearColor(1.0f, 1.0f, 1.0f, 0.0f); // cor de fundo da janela
 }
@@ -127,6 +125,7 @@ void AlteraTamanhoJanela(GLsizei w, GLsizei h) {
 }
 
 void open_window(int width, int height, string nome_janela) {
+  // ponto de entrada das funções do opengl
 
   int argc = 1; char *argv[1] = {(char*)"opengl"}; // glut requer esses parametros
   glutInit(&argc, argv);
