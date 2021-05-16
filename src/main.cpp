@@ -59,12 +59,17 @@ int main(int argc, char const *argv[]) {
         if (index < vertices.size()) {
           VerticePosition *v = new VerticePosition;
           v->x = x_axis;
-          v->y = y_axis;
+          if (x == 1) {
+            // deslocar a segunda coluna
+            v->y = y_axis-30;
+          } else {
+            v->y = y_axis;
+          }
           v->nome = vertices[index]->nome;
           v->cor = vertices[index]->cor;
           global_var_vertices.push_back(v);
 
-          x_axis += 100;
+          x_axis += 80;
           index++;
 
         } else {
@@ -77,7 +82,7 @@ int main(int argc, char const *argv[]) {
         break;
       } else {
         x_axis = 100;
-        y_axis += 100;
+        y_axis += 80;
       }
     }
 
