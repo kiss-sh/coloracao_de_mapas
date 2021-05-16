@@ -46,6 +46,9 @@ int main(int argc, char const *argv[]) {
     vector<Vertice*> vertices = ler_arquivo(filename);
     cout << "leitura finalizada" << endl; // log
 
+    vector<int> cores;
+    colorir_mapa(*vertices[0], cores);
+
     bool breaked = false;
     int x_axis = 100;
     int y_axis = 100;
@@ -58,6 +61,7 @@ int main(int argc, char const *argv[]) {
           v->x = x_axis;
           v->y = y_axis;
           v->nome = vertices[index]->nome;
+          v->cor = vertices[index]->cor;
           global_var_vertices.push_back(v);
 
           x_axis += 100;

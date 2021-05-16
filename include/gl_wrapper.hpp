@@ -8,6 +8,7 @@ struct VerticePosition {
   int x;
   int y;
   string nome;
+  int cor;
 };
 
 struct ArestaPosition {

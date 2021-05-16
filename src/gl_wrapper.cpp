@@ -42,18 +42,37 @@ void desenhaTexto(const char* text, int length, int x, int y) {
   glMatrixMode(GL_MODELVIEW);
 }
 
-void desenhaVertice(int x, int y, string text) {
+void desenhaVertice(int x, int y, string text, int cor) {
 // circulo externo
   glColor3f(0.0f, 0.0f, 0.0f);
   DesenhaCirculo(20, x, y);
 
   // circulo interno
-  glColor3f(1.0f, 1.0f, 1.0f);
+  switch (cor) {
+    case 1:
+      glColor3f(0.0f, 0.5f, 1.0f); // azul
+      break;
+    case 2:
+      glColor3f(0.0f, 1.0f, 0.0f); // verde
+      break;
+    case 3:
+      glColor3f(1.0f, 1.0f, 0.0f); // amarelo
+      break;
+    case 4:
+      glColor3f(2.0f, 0.5f, 1.0f); // roxo
+      break;
+    case 5:
+      glColor3f(1.0f, 0.5f, 0.0f); // laranja
+      break;
+    case 6:
+      glColor3f(1.0f, 0.0f, 0.0f); // vermelho
+      break;
+    default: glColor3f(1.0f, 1.0f, 1.0f); // branco
+  }
   DesenhaCirculo(16, x, y);
 
-  glColor3f(0.0f, 0.0f, 0.0f);
-
   // texto dentro do vertive
+  glColor3f(0.0f, 0.0f, 0.0f);
   const char *str = text.c_str();
   desenhaTexto(str, text.size(), x-4, y-2);
 }
@@ -84,7 +103,8 @@ void Desenha(void) {
   for (int i = 0; i < global_var_vertices.size(); i++) {
     desenhaVertice(global_var_vertices[i]->x,
                    global_var_vertices[i]->y,
-                   global_var_vertices[i]->nome);
+                   global_var_vertices[i]->nome,
+                   global_var_vertices[i]->cor);
   }
 
 
