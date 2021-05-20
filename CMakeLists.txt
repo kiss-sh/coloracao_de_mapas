@@ -6,8 +6,11 @@ include_directories(
   ${PROJECT_SOURCE_DIR}/include
 )
 
-set(CMAKE_CXX_FLAGS "-lGL -lglut -lGLU") # libs opengl to linker
+find_package(OpenGL REQUIRED)
+find_package(GLUT REQUIRED)
+
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE INTERNAL "") # export compile_commmands.json
 file(GLOB SOURCES "src/*.cpp")
 
 add_executable(color_map ${SOURCES})
+target_link_libraries(color_map GL glut GLU)
