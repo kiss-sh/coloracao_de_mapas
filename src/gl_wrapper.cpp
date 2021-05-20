@@ -74,7 +74,7 @@ void desenhaVertice(int x, int y, string text, int cor) {
 }
 
 void desenhaAresta(int x_begin, int y_begin, int x_end, int y_end) {
-  glLineWidth(25.0f);
+  glLineWidth(8.0f);
   glBegin(GL_LINES);
     glColor3f(0.0f, 0.0f, 0.0f);
     glVertex2f(x_begin, y_begin);
@@ -85,6 +85,7 @@ void desenhaAresta(int x_begin, int y_begin, int x_end, int y_end) {
 void Desenha(void) {
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
+  glClearColor(1.0f, 1.0f, 1.0f, 0.0f); // cor de fundo da janela
   glClear(GL_COLOR_BUFFER_BIT);
 
   for (int i = 0; i < global_var_arestas.size(); i++) {
@@ -102,7 +103,6 @@ void Desenha(void) {
   }
 
   glutSwapBuffers();
-  glClearColor(1.0f, 1.0f, 1.0f, 0.0f); // cor de fundo da janela
 }
 
 void AlteraTamanhoJanela(GLsizei w, GLsizei h) {
